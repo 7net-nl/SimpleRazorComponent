@@ -1,0 +1,60 @@
+﻿@using CustomRazor
+@using CustomRazor.Models
+@using CustomRazor.Components
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.CompilerServices
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Rendering
+@using Microsoft.AspNetCore.Components.RenderTree
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Server
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <textarea rows="@Rows" class="form-control pre-scrollable" disabled>@model.User1</textarea>
+            <input class="form-control" type="text" placeholder="Type Here" @bind="@model.UserText1" @onkeyup="AddTextUser1" />
+            <button type="button" class="btn btn-danger" @onclick="AddTextUser1">></button>
+        </div>
+    </div>
+
+</div>
+
+@Count;
+
+
+
+@code{
+
+
+    public InputViewModel model { get; set; } = new InputViewModel();
+    private int Rows = 5;
+    private int Count;
+
+
+    public void AddTextUser1()
+    {
+
+
+        if (!string.IsNullOrEmpty(model.UserText1))
+        {
+
+
+            Count++;
+            model.User1 = model.User1 + Environment.NewLine + model.UserText1;
+            model.UserText1 = "";
+
+        }
+    }
+
+
+
+
+}
+
+
